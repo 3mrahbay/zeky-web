@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gizlilik Politikası ve KVKK Aydınlatma Metni · ZEKY</title>
+<meta name="description" content="ZEKY okul yönetim sistemi gizlilik politikası ve KVKK aydınlatma metni.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --koyu:#2D5E3E;
+    --orta:#4A7C59;
+    --acik:#7CB97C;
+    --kagit:#FBFCFA;
+    --metin:#1F2A22;
+    --soluk:#5C6B60;
+    --cizgi:#E2E8E3;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'DM Sans',system-ui,sans-serif;
+    background:var(--kagit);
+    color:var(--metin);
+    line-height:1.7;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sarmal{max-width:760px;margin:0 auto;padding:0 24px}
+
+  header{
+    background:var(--koyu);
+    color:#fff;
+    padding:56px 0 44px;
+  }
+  header .etiket{
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--acik);
+    margin-bottom:14px;
+  }
+  header h1{
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,40px);
+    line-height:1.2;
+    letter-spacing:-.01em;
+  }
+  header .tarih{
+    margin-top:18px;
+    font-size:14px;
+    color:rgba(255,255,255,.75);
+  }
+
+  nav.icindekiler{
+    background:#fff;
+    border-bottom:1px solid var(--cizgi);
+    padding:22px 0;
+  }
+  nav.icindekiler h2{
+    font-family:'Quicksand',sans-serif;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--soluk);
+    margin-bottom:12px;
+    font-weight:600;
+  }
+  nav.icindekiler ol{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 20px;
+    counter-reset:bolum;
+  }
+  nav.icindekiler li{counter-increment:bolum}
+  nav.icindekiler a{
+    color:var(--orta);
+    text-decoration:none;
+    font-size:14.5px;
+    border-bottom:1px solid transparent;
+  }
+  nav.icindekiler a::before{
+    content:counter(bolum,decimal-leading-zero);
+    color:var(--acik);
+    font-weight:600;
+    margin-right:7px;
+    font-size:12px;
+  }
+  nav.icindekiler a:hover,nav.icindekiler a:focus{
+    border-bottom-color:var(--orta);
+  }
+
+  main{padding:48px 0 72px}
+  section{margin-bottom:44px;scroll-margin-top:24px}
+  section h2{
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    font-size:21px;
+    color:var(--koyu);
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--acik);
+  }
+  section h3{
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    font-size:16.5px;
+    color:var(--orta);
+    margin:22px 0 8px;
+  }
+  p{margin-bottom:14px}
+  ul{margin:0 0 16px 20px}
+  li{margin-bottom:7px}
+  strong{font-weight:500;color:var(--koyu)}
+  a{color:var(--orta)}
+
+  .kutu{
+    background:#fff;
+    border:1px solid var(--cizgi);
+    border-left:3px solid var(--acik);
+    padding:18px 22px;
+    border-radius:4px;
+    margin:18px 0;
+  }
+  .kutu p:last-child{margin-bottom:0}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:14.5px;
+    background:#fff;
+  }
+  th,td{
+    text-align:left;
+    padding:11px 14px;
+    border:1px solid var(--cizgi);
+    vertical-align:top;
+  }
+  th{
+    background:#F1F5F2;
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    color:var(--koyu);
+    font-size:13.5px;
+  }
+  .tablo-sarmal{overflow-x:auto}
+
+  footer{
+    background:#F1F5F2;
+    border-top:1px solid var(--cizgi);
+    padding:34px 0;
+    font-size:14px;
+    color:var(--soluk);
+  }
+  footer strong{display:block;margin-bottom:6px}
+
+  @media(max-width:600px){
+    header{padding:40px 0 32px}
+    main{padding:34px 0 52px}
+    nav.icindekiler ol{flex-direction:column;gap:8px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="sarmal">
+    <div class="etiket">ZEKY Okul Yönetim Sistemi</div>
+    <h1>Gizlilik Politikası ve KVKK Aydınlatma Metni</h1>
+    <div class="tarih">Yürürlük tarihi: [TARİH] · Son güncelleme: [TARİH]</div>
+  </div>
+</header>
+
+<nav class="icindekiler">
+  <div class="sarmal">
+    <h2>İçindekiler</h2>
+    <ol>
+      <li><a href="#veri-sorumlusu">Veri sorumlusu</a></li>
+      <li><a href="#toplanan">Toplanan veriler</a></li>
+      <li><a href="#amac">İşleme amaçları</a></li>
+      <li><a href="#hukuki">Hukuki sebep</a></li>
+      <li><a href="#aktarim">Veri aktarımı</a></li>
+      <li><a href="#yurtdisi">Yurt dışına aktarım</a></li>
+      <li><a href="#cocuk">Çocuklara ait veriler</a></li>
+      <li><a href="#izinler">Cihaz izinleri</a></li>
+      <li><a href="#saklama">Saklama süreleri</a></li>
+      <li><a href="#guvenlik">Güvenlik önlemleri</a></li>
+      <li><a href="#haklar">Haklarınız</a></li>
+      <li><a href="#silme">Hesap silme</a></li>
+      <li><a href="#degisiklik">Değişiklikler</a></li>
+      <li><a href="#iletisim">İletişim</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main class="sarmal">
+
+  <section id="veri-sorumlusu">
+    <h2>1. Veri sorumlusu kim</h2>
+    <p>ZEKY, okulların öğrenci, veli ve personel süreçlerini yönettiği bir okul yönetim sistemidir. Uygulamayı kullandığınız okul, verilerinizin <strong>veri sorumlusudur</strong>. ZEKY'yi geliştiren ve işleten [TİCARİ UNVAN] ise okul adına <strong>veri işleyen</strong> sıfatıyla hareket eder.</p>
+    <p>Pratikte bu şu anlama gelir: hangi verinin toplanacağına, kimin göreceğine ve ne kadar saklanacağına okulunuz karar verir. Biz altyapıyı sağlar ve okulun talimatları doğrultusunda işleriz.</p>
+    <div class="kutu">
+      <p><strong>Veri sorumlusu okul:</strong> [OKUL TİCARİ UNVANI]<br>
+      Adres: [OKUL ADRESİ]<br>
+      E-posta: [OKUL E-POSTA]</p>
+      <p style="margin-top:10px"><strong>Veri işleyen:</strong> [TİCARİ UNVAN]<br>
+      E-posta: kvkk@zeky.com.tr</p>
+    </div>
+  </section>
+
+  <section id="toplanan">
+    <h2>2. Hangi verileri topluyoruz</h2>
+    <p>Topladığımız veriler, uygulamadaki rolünüze göre değişir.</p>
+
+    <h3>Tüm kullanıcılar</h3>
+    <ul>
+      <li>Ad, soyad ve e-posta adresi (Google hesabınızla giriş sırasında)</li>
+      <li>Rol bilgisi (veli, öğretmen, yönetici)</li>
+      <li>Giriş kayıtları: tarih, saat, cihaz ve tarayıcı bilgisi</li>
+      <li>Bildirim gönderebilmek için cihaz kimliği (push token)</li>
+    </ul>
+
+    <h3>Veliler</h3>
+    <ul>
+      <li>İletişim bilgileri: telefon, adres</li>
+      <li>Çocuğunuza ait kayıtlar: ad, doğum tarihi, sınıf, devamsızlık, gelişim değerlendirmeleri, günlük raporlar</li>
+      <li>Çocuğunuzun fotoğraf ve videoları (izin verdiğiniz ölçüde)</li>
+      <li>Sağlık bilgileri: alerji, kronik rahatsızlık, kullanılan ilaçlar</li>
+      <li>Ödeme ve fatura kayıtları</li>
+      <li>Okulla yapılan yazışmalar</li>
+    </ul>
+
+    <h3>Personel</h3>
+    <ul>
+      <li>Kimlik ve iletişim bilgileri</li>
+      <li>Giriş-çıkış kayıtları, puantaj, izin ve bordro verileri</li>
+      <li>Atanan sınıf ve branş bilgisi</li>
+    </ul>
+
+    <p>Uygulama, reklam amaçlı takip yapmaz. Üçüncü taraf reklam ağlarına veri göndermez.</p>
+  </section>
+
+  <section id="amac">
+    <h2>3. Verileri neden işliyoruz</h2>
+    <ul>
+      <li>Okul-veli iletişimini yürütmek: duyuru, mesaj, günlük rapor</li>
+      <li>Eğitim süreçlerini takip etmek: müfredat, kazanım, gelişim değerlendirmesi</li>
+      <li>Devam takibi ve güvenli teslim-alma zincirini işletmek</li>
+      <li>Mali süreçleri yürütmek: tahsilat, fatura, ödeme takibi</li>
+      <li>Personel özlük ve puantaj süreçlerini yönetmek</li>
+      <li>Yasal yükümlülükleri yerine getirmek: MEB mevzuatı, 4857 sayılı İş Kanunu, vergi mevzuatı</li>
+      <li>Sistem güvenliğini sağlamak ve kötüye kullanımı önlemek</li>
+    </ul>
+  </section>
+
+  <section id="hukuki">
+    <h2>4. Hukuki sebep</h2>
+    <p>Verileriniz KVKK'nın 5. ve 6. maddelerinde sayılan şu sebeplere dayanılarak işlenir:</p>
+    <ul>
+      <li>Eğitim hizmeti sözleşmesinin kurulması ve ifası için gerekli olması</li>
+      <li>Okulun hukuki yükümlülüklerini yerine getirebilmesi</li>
+      <li>Hakların tesisi, kullanılması veya korunması</li>
+      <li>Açık rızanız — özellikle fotoğraf/video paylaşımı, sağlık verileri ve yurt dışına aktarım için</li>
+    </ul>
+    <p>Açık rızaya dayalı işlemler için verdiğiniz izni <strong>her zaman geri çekebilirsiniz</strong>. İzin geçmişiniz uygulama içinde kayıt altındadır ve görüntülenebilir.</p>
+  </section>
+
+  <section id="aktarim">
+    <h2>5. Verileri kimlerle paylaşıyoruz</h2>
+    <div class="tablo-sarmal">
+    <table>
+      <tr><th>Alıcı</th><th>Ne için</th></tr>
+      <tr><td>Okul personeli</td><td>Yalnızca görevleri kapsamında ve yetkilendirildikleri sınıflarla sınırlı olarak</td></tr>
+      <tr><td>Google Firebase</td><td>Kimlik doğrulama, veritabanı, bildirim altyapısı</td></tr>
+      <tr><td>Bunny.net</td><td>Fotoğraf ve video barındırma</td></tr>
+      <tr><td>Brevo</td><td>E-posta gönderimi</td></tr>
+      <tr><td>Mali müşavir / muhasebe</td><td>Yasal mali yükümlülükler</td></tr>
+      <tr><td>Yetkili kamu kurumları</td><td>Yalnızca mevzuatın zorunlu kıldığı hallerde</td></tr>
+    </table>
+    </div>
+    <p>Verileriniz bunların dışında hiçbir üçüncü tarafa satılmaz, kiralanmaz veya pazarlama amacıyla paylaşılmaz.</p>
+  </section>
+
+  <section id="yurtdisi">
+    <h2>6. Yurt dışına aktarım</h2>
+    <p>ZEKY, altyapı hizmeti olarak Google Firebase ve Bunny.net kullanır. Bu hizmetlerin sunucuları <strong>Türkiye dışında</strong> bulunabilir. Dolayısıyla verileriniz yurt dışına aktarılmaktadır.</p>
+    <p>Bu aktarım, KVKK'nın 9. maddesi kapsamında <strong>açık rızanıza</strong> dayanır. Uygulamaya ilk girişinizde bu konuda ayrıca bilgilendirilir ve onayınız alınır.</p>
+    <div class="kutu">
+      <p>Yurt dışına aktarıma onay vermek istemezseniz, uygulamayı kullanamazsınız. Bu durumda okulunuz sizinle iletişimi geleneksel yöntemlerle sürdürür.</p>
+    </div>
+  </section>
+
+  <section id="cocuk">
+    <h2>7. Çocuklara ait veriler</h2>
+    <p>ZEKY, çocuklara yönelik bir uygulama değildir. Kullanıcıları yetişkinlerdir: veliler, öğretmenler ve okul yöneticileri. Çocuklar uygulamaya giriş yapmaz, hesap açmaz.</p>
+    <p>Bununla birlikte uygulamada çocuklara ait kayıtlar tutulur. Bu kayıtlar yalnızca:</p>
+    <ul>
+      <li>Çocuğun velisi</li>
+      <li>Çocuğun atandığı sınıfın öğretmeni</li>
+      <li>Yetkili okul yöneticileri</li>
+    </ul>
+    <p>tarafından görüntülenebilir. Sistem, sınıf bazlı erişim izolasyonu uygular: bir öğretmen, kendi sınıfı dışındaki çocukların kayıtlarına erişemez.</p>
+    <p>Çocuk fotoğraf ve videolarının paylaşımı <strong>ayrı ve açık veli rızasına</strong> tabidir. Bu rızayı istediğiniz zaman geri çekebilirsiniz.</p>
+  </section>
+
+  <section id="izinler">
+    <h2>8. Uygulama hangi cihaz izinlerini istiyor</h2>
+    <div class="tablo-sarmal">
+    <table>
+      <tr><th>İzin</th><th>Ne için kullanılır</th></tr>
+      <tr><td>Kamera</td><td>QR kod okutma (personel giriş-çıkış), fotoğraf yükleme</td></tr>
+      <tr><td>Bildirim</td><td>Duyuru, mesaj ve günlük rapor bildirimleri</td></tr>
+      <tr><td>Konum</td><td>Yalnızca personel giriş-çıkış doğrulaması için, yalnızca işlem anında</td></tr>
+      <tr><td>Fotoğraf / dosya</td><td>Belge ve görsel yükleme</td></tr>
+    </table>
+    </div>
+    <p>İzinlerin tamamı isteğe bağlıdır ve cihaz ayarlarından her zaman kapatılabilir. Konum bilgisi arka planda toplanmaz ve takip amacıyla kullanılmaz.</p>
+  </section>
+
+  <section id="saklama">
+    <h2>9. Verileri ne kadar süre saklıyoruz</h2>
+    <div class="tablo-sarmal">
+    <table>
+      <tr><th>Veri türü</th><th>Saklama süresi</th></tr>
+      <tr><td>Öğrenci eğitim kayıtları</td><td>Okuldan ayrılıştan sonra 10 yıl (MEB mevzuatı)</td></tr>
+      <tr><td>Mali kayıtlar ve faturalar</td><td>10 yıl (Vergi Usul Kanunu, Türk Ticaret Kanunu)</td></tr>
+      <tr><td>Personel özlük dosyaları</td><td>İş ilişkisinin sona ermesinden itibaren 10 yıl</td></tr>
+      <tr><td>Fotoğraf ve videolar</td><td>Rıza geri çekilene kadar</td></tr>
+      <tr><td>Giriş kayıtları (log)</td><td>2 yıl</td></tr>
+      <tr><td>Mesajlaşma geçmişi</td><td>Okuldan ayrılıştan sonra 2 yıl</td></tr>
+    </table>
+    </div>
+    <p>Süre dolduğunda veriler silinir veya geri döndürülemez şekilde anonim hale getirilir.</p>
+  </section>
+
+  <section id="guvenlik">
+    <h2>10. Güvenlik önlemleri</h2>
+    <ul>
+      <li>Tüm veri iletişimi HTTPS ile şifrelenir</li>
+      <li>Giriş, Google kimlik doğrulaması üzerinden yapılır; uygulama şifre saklamaz</li>
+      <li>Rol bazlı erişim kontrolü: her kullanıcı yalnızca yetkili olduğu veriyi görür</li>
+      <li>Veritabanı kuralları sunucu tarafında uygulanır, istemci tarafında aşılamaz</li>
+      <li>Günlük otomatik yedekleme, 60 gün geriye dönük saklama</li>
+      <li>Fotoğraf ve videolar ayrı bir içerik ağında, erişim denetimiyle barındırılır</li>
+    </ul>
+  </section>
+
+  <section id="haklar">
+    <h2>11. KVKK kapsamındaki haklarınız</h2>
+    <p>KVKK'nın 11. maddesi uyarınca şu haklara sahipsiniz:</p>
+    <ul>
+      <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+      <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+      <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+      <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+      <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+      <li>Silinmesini veya yok edilmesini isteme</li>
+      <li>Düzeltme ve silme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+      <li>Otomatik sistemlerle analiz sonucu aleyhinize bir sonuç doğmasına itiraz etme</li>
+      <li>Kanuna aykırı işleme nedeniyle zarara uğramanız halinde tazminat talep etme</li>
+    </ul>
+    <p>Taleplerinizi <a href="mailto:kvkk@zeky.com.tr">kvkk@zeky.com.tr</a> adresine veya okulunuza iletebilirsiniz. Başvurunuz en geç <strong>30 gün</strong> içinde ücretsiz olarak sonuçlandırılır.</p>
+  </section>
+
+  <section id="silme">
+    <h2>12. Hesabınızı silmek</h2>
+    <p>Hesabınızın ve verilerinizin silinmesini talep edebilirsiniz. Talep yolu ve silme sonrası ne olacağı ayrı bir sayfada açıklanmıştır:</p>
+    <p><a href="hesap-silme.html">Hesap silme talebi sayfası →</a></p>
+    <p>Bazı verilerin yasal saklama süreleri dolmadan silinemeyeceğini lütfen unutmayın. Bu durumda ilgili veriler erişime kapatılır ve süre sonunda silinir.</p>
+  </section>
+
+  <section id="degisiklik">
+    <h2>13. Bu metinde değişiklik</h2>
+    <p>Bu politika, mevzuat değişiklikleri veya uygulamaya eklenen yeni özellikler nedeniyle güncellenebilir. Önemli değişikliklerde uygulama içinden bildirim gönderilir. Güncel sürüm her zaman bu adreste yayınlanır.</p>
+  </section>
+
+  <section id="iletisim">
+    <h2>14. İletişim</h2>
+    <p>Gizlilikle ilgili her türlü soru, talep ve şikâyet için:</p>
+    <div class="kutu">
+      <p><strong>E-posta:</strong> <a href="mailto:kvkk@zeky.com.tr">kvkk@zeky.com.tr</a><br>
+      <strong>Destek:</strong> <a href="mailto:destek@zeky.com.tr">destek@zeky.com.tr</a><br>
+      <strong>Adres:</strong> [TİCARİ UNVAN VE ADRES]</p>
+    </div>
+    <p>Okulunuza ait taleplerde doğrudan okulunuzla da iletişime geçebilirsiniz.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="sarmal">
+    <strong>ZEKY Okul Yönetim Sistemi</strong>
+    [TİCARİ UNVAN] · Tüm hakları saklıdır.
+  </div>
+</footer>
+
+</body>
+</html>

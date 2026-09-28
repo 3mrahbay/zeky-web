@@ -4,10 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hesap Silme Talebi · ZEKY</title>
-<meta name="description" content="ZEKY hesabınızın ve verilerinizin silinmesini nasıl talep edeceğiniz.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<meta name="description" content="ZEKY hesabınızın ve ilişkili kişisel verilerinizin silinmesini nasıl talep edeceğinize ilişkin bilgilendirme.">
 <style>
   :root{
     --koyu:#2D5E3E;
@@ -21,192 +18,114 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
-    font-family:'DM Sans',system-ui,sans-serif;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     background:var(--kagit);
     color:var(--metin);
     line-height:1.7;
     font-size:16px;
     -webkit-font-smoothing:antialiased;
   }
-  .sarmal{max-width:680px;margin:0 auto;padding:0 24px}
-
+  .sarmal{max-width:720px;margin:0 auto;padding:0 24px}
   header{background:var(--koyu);color:#fff;padding:56px 0 44px}
-  header .etiket{
-    font-family:'Quicksand',sans-serif;font-weight:600;font-size:13px;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--acik);margin-bottom:14px;
-  }
-  header h1{
-    font-family:'Quicksand',sans-serif;font-weight:700;
-    font-size:clamp(28px,5vw,38px);line-height:1.2;
-  }
-  header p{margin-top:16px;color:rgba(255,255,255,.8);font-size:15.5px}
-
+  header .etiket{font-weight:700;font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:#B7E0BC;margin-bottom:14px}
+  header h1{font-weight:750;font-size:clamp(28px,5vw,38px);line-height:1.2}
+  header p{margin-top:16px;color:rgba(255,255,255,.82);font-size:15.5px}
   main{padding:48px 0 72px}
   section{margin-bottom:40px}
-  h2{
-    font-family:'Quicksand',sans-serif;font-weight:700;font-size:20px;
-    color:var(--koyu);margin-bottom:14px;padding-bottom:10px;
-    border-bottom:2px solid var(--acik);
-  }
+  h2{font-weight:750;font-size:20px;color:var(--koyu);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--acik)}
   p{margin-bottom:14px}
   ul{margin:0 0 16px 20px}
   li{margin-bottom:8px}
-  strong{font-weight:500;color:var(--koyu)}
+  strong{font-weight:700;color:var(--koyu)}
   a{color:var(--orta)}
-
-  /* Adım listesi — sıra burada gerçekten bilgi taşıyor */
   ol.adimlar{list-style:none;counter-reset:adim;margin:0}
-  ol.adimlar li{
-    counter-increment:adim;
-    position:relative;
-    padding-left:52px;
-    margin-bottom:24px;
-  }
+  ol.adimlar li{counter-increment:adim;position:relative;padding-left:52px;margin-bottom:24px}
   ol.adimlar li::before{
-    content:counter(adim);
-    position:absolute;left:0;top:2px;
-    width:34px;height:34px;
-    background:var(--koyu);color:#fff;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Quicksand',sans-serif;font-weight:700;font-size:15px;
+    content:counter(adim);position:absolute;left:0;top:2px;width:34px;height:34px;
+    background:var(--koyu);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:15px
   }
-  ol.adimlar h3{
-    font-family:'Quicksand',sans-serif;font-weight:600;
-    font-size:17px;color:var(--koyu);margin-bottom:5px;
-  }
+  ol.adimlar h3{font-weight:700;font-size:17px;color:var(--koyu);margin-bottom:5px}
   ol.adimlar p{margin-bottom:0;font-size:15.5px}
-
-  .kutu{
-    background:#fff;border:1px solid var(--cizgi);
-    border-left:3px solid var(--acik);
-    padding:20px 24px;border-radius:4px;margin:20px 0;
-  }
+  .kutu{background:#fff;border:1px solid var(--cizgi);border-left:3px solid var(--acik);padding:20px 24px;border-radius:8px;margin:20px 0}
   .kutu.dikkat{border-left-color:var(--uyari);background:#FDFBF7}
   .kutu p:last-child{margin-bottom:0}
-  .kutu .baslik{
-    font-family:'Quicksand',sans-serif;font-weight:600;
-    color:var(--koyu);margin-bottom:8px;display:block;
-  }
+  .kutu .baslik{font-weight:700;color:var(--koyu);margin-bottom:8px;display:block}
   .kutu.dikkat .baslik{color:var(--uyari)}
-
-  .tablo-sarmal{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14.5px;background:#fff}
-  th,td{text-align:left;padding:11px 14px;border:1px solid var(--cizgi);vertical-align:top}
-  th{background:#F1F5F2;font-family:'Quicksand',sans-serif;font-weight:600;color:var(--koyu);font-size:13.5px}
-
-  .eylem{
-    display:inline-block;
-    background:var(--koyu);color:#fff;
-    text-decoration:none;
-    font-family:'Quicksand',sans-serif;font-weight:600;
-    padding:14px 28px;border-radius:6px;
-    margin-top:8px;
-  }
+  .eylem{display:inline-block;background:var(--koyu);color:#fff;text-decoration:none;font-weight:700;padding:14px 28px;border-radius:8px;margin-top:8px}
   .eylem:hover,.eylem:focus{background:var(--orta)}
-
-  footer{
-    background:#F1F5F2;border-top:1px solid var(--cizgi);
-    padding:34px 0;font-size:14px;color:var(--soluk);
-  }
+  footer{background:#F1F5F2;border-top:1px solid var(--cizgi);padding:34px 0;font-size:14px;color:var(--soluk)}
   footer strong{display:block;margin-bottom:6px}
-
-  @media(max-width:600px){
-    header{padding:40px 0 32px}
-    main{padding:34px 0 52px}
-  }
+  @media(max-width:600px){header{padding:40px 0 32px}main{padding:34px 0 52px}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="sarmal">
-    <div class="etiket">ZEKY Okul Yönetim Sistemi</div>
+    <div class="etiket">ZEKY – Okul Yönetim Sistemi</div>
     <h1>Hesap silme talebi</h1>
-    <p>Hesabınızın ve verilerinizin silinmesini isteyebilirsiniz. Bu sayfa nasıl talep edeceğinizi ve sonrasında ne olacağını anlatır.</p>
+    <p>Hesabınızın ve hesabınızla ilişkili kişisel verilerin silinmesini talep edebilirsiniz.</p>
   </div>
 </header>
 
 <main class="sarmal">
 
   <section>
-    <h2>Nasıl talep edilir</h2>
+    <h2>Nasıl talep edilir?</h2>
     <ol class="adimlar">
       <li>
         <h3>Uygulama içinden</h3>
-        <p>ZEKY uygulamasını açın, <strong>Ayarlar → Hesabım → Hesabımı sil</strong> yolunu izleyin. Talebiniz kayda alınır ve size onay e-postası gönderilir.</p>
+        <p>ZEKY uygulamasında <strong>Ayarlar → Hesabım → Hesap Silme</strong> bölümünü açın ve silme talebinizi oluşturun. Talebiniz okul yönetiminin ilgili ekranına iletilir.</p>
       </li>
       <li>
-        <h3>Veya e-posta ile</h3>
-        <p>Uygulamaya erişemiyorsanız, hesabınıza kayıtlı e-posta adresinden <a href="mailto:destek@zeky.com.tr?subject=Hesap%20Silme%20Talebi">destek@zeky.com.tr</a> adresine yazın. Konu satırına "Hesap Silme Talebi" yazmanız yeterli.</p>
+        <h3>Web veya e-posta ile</h3>
+        <p>Uygulamaya erişemiyorsanız, hesabınıza kayıtlı e-posta adresinden <a href="mailto:emrahby@gmail.com?subject=ZEKY%20Hesap%20Silme%20Talebi">emrahby@gmail.com</a> adresine “ZEKY Hesap Silme Talebi” konusuyla yazabilirsiniz.</p>
       </li>
       <li>
-        <h3>Doğrulama</h3>
-        <p>Talebin hesap sahibinden geldiğini doğrularız. Bu, başkasının sizin adınıza silme talebi göndermesini engeller.</p>
+        <h3>Kimlik doğrulama</h3>
+        <p>Başkasının sizin adınıza hesap silmesini önlemek amacıyla talebin hesap sahibi veya yetkili kişi tarafından gönderildiği doğrulanabilir.</p>
       </li>
       <li>
         <h3>Sonuçlandırma</h3>
-        <p>Talebiniz en geç <strong>30 gün</strong> içinde sonuçlandırılır ve size yazılı olarak bildirilir. Ücret alınmaz.</p>
+        <p>Talep, uygulanabilir mevzuat ve hesabın niteliği dikkate alınarak değerlendirilir. ZEKY içindeki talep ekranında mevcut süreç için en geç <strong>30 gün içinde</strong> işleme alınacağı bilgisi gösterilir.</p>
       </li>
     </ol>
-
-    <p><a class="eylem" href="mailto:destek@zeky.com.tr?subject=Hesap%20Silme%20Talebi">E-posta ile talep gönder</a></p>
+    <p><a class="eylem" href="mailto:emrahby@gmail.com?subject=ZEKY%20Hesap%20Silme%20Talebi">E-posta ile talep gönder</a></p>
   </section>
 
   <section>
-    <h2>Hangi veriler silinir</h2>
-    <p>Talebiniz onaylandığında şunlar kalıcı olarak silinir:</p>
+    <h2>Silme talebi neleri kapsar?</h2>
+    <p>Talep onaylandığında ve ilgili veri için başka bir hukuki saklama zorunluluğu bulunmadığında, kullanıcı hesabı ve hesapla ilişkili kişisel veriler silinir veya geri döndürülemeyecek şekilde anonim hale getirilir.</p>
     <ul>
-      <li>Hesap bilgileriniz: ad, e-posta, telefon, adres</li>
-      <li>Giriş kayıtlarınız ve cihaz bildirim kimliğiniz</li>
-      <li>Uygulama içi mesajlaşma geçmişiniz</li>
-      <li>Yüklediğiniz fotoğraf ve belgeler</li>
-      <li>Rıza kayıtlarınız dışındaki tüm tercihleriniz</li>
+      <li>Uygulama giriş yetkisi ve kullanıcı profil bilgileri</li>
+      <li>Bildirim belirteci ve kullanıcıya özgü uygulama tercihleri</li>
+      <li>Kullanıcının yüklediği profil görselleri ve saklanması gerekmeyen belgeler</li>
+      <li>Hukuki veya kurumsal saklama gereği bulunmayan kullanıcıya özgü iletişim ve işlem kayıtları</li>
     </ul>
   </section>
 
   <section>
-    <h2>Hangi veriler hemen silinemez</h2>
-    <p>Bazı kayıtlar yasal saklama yükümlülüğüne tabidir. Bunlar silme talebinizle birlikte <strong>erişime kapatılır</strong>, kimse tarafından görüntülenemez, ve süre dolduğunda otomatik olarak silinir.</p>
-    <div class="tablo-sarmal">
-    <table>
-      <tr><th>Veri türü</th><th>Yasal saklama süresi</th><th>Dayanak</th></tr>
-      <tr><td>Öğrenci eğitim kayıtları</td><td>10 yıl</td><td>MEB mevzuatı</td></tr>
-      <tr><td>Fatura ve mali kayıtlar</td><td>10 yıl</td><td>Vergi Usul Kanunu</td></tr>
-      <tr><td>Personel özlük kayıtları</td><td>10 yıl</td><td>4857 sayılı İş Kanunu</td></tr>
-    </table>
+    <h2>Hangi veriler hemen silinmeyebilir?</h2>
+    <p>Eğitim, mali, personel, güvenlik veya hukuki uyuşmazlıklarla ilgili bazı kayıtların belirli bir süre saklanması mevzuat veya hakların tesisi, kullanılması ve korunması nedeniyle gerekli olabilir.</p>
+    <div class="kutu">
+      <span class="baslik">Sınırlı saklama</span>
+      <p>Silme talebine rağmen tutulması zorunlu olan kayıtlar, yalnızca zorunlu amaç ve süreyle sınırlı olarak saklanır; normal uygulama kullanımına açık tutulmaz. Saklama şartı sona erdiğinde ilgili veriler silinir, yok edilir veya anonim hale getirilir.</p>
     </div>
+    <p>Veli hesabının silinmesi, öğrencinin okul kayıt sözleşmesini veya okulun mevzuat gereği tutmak zorunda olduğu öğrenci kayıtlarını kendiliğinden sona erdirmez.</p>
   </section>
 
   <section>
-    <h2>Bilmeniz gerekenler</h2>
-
-    <div class="kutu dikkat">
-      <span class="baslik">Silme geri alınamaz</span>
-      <p>Hesabınız silindikten sonra verileriniz kurtarılamaz. Saklamak istediğiniz fotoğraf, rapor veya belge varsa silme talebinden önce indirin.</p>
-    </div>
-
-    <div class="kutu">
-      <span class="baslik">Çocuğunuz okula devam ediyorsa</span>
-      <p>Veli hesabınızı silmek, çocuğunuzun okul kaydını sonlandırmaz. Okul kaydı ayrı bir süreçtir ve doğrudan okulunuzla yürütülür. Hesabınızı silerseniz duyuru, günlük rapor ve mesajlara erişiminiz sona erer.</p>
-    </div>
-
-    <div class="kutu">
-      <span class="baslik">Personel hesapları</span>
-      <p>Görevdeki personelin hesabı, iş ilişkisi sürerken silinemez. İş ilişkisinin sona ermesinden sonra talep edilebilir.</p>
-    </div>
-
-    <div class="kutu">
-      <span class="baslik">Fikrinizi değiştirirseniz</span>
-      <p>Silme işlemi tamamlanmadan önce <strong>7 gün</strong> içinde talebinizi iptal edebilirsiniz. Aynı e-posta adresinden yazmanız yeterli.</p>
-    </div>
+    <h2>Talebi iptal etme</h2>
+    <p>ZEKY uygulamasında talep henüz “bekliyor” durumundayken <strong>Talebi İptal Et</strong> seçeneği kullanılabilir. Talep işleme alınıp silme tamamlandıktan sonra silinen verilerin geri getirileceği garanti edilemez.</p>
   </section>
 
   <section>
     <h2>İletişim</h2>
     <div class="kutu">
-      <p><strong>Destek:</strong> <a href="mailto:destek@zeky.com.tr">destek@zeky.com.tr</a><br>
-      <strong>KVKK talepleri:</strong> <a href="mailto:kvkk@zeky.com.tr">kvkk@zeky.com.tr</a><br>
+      <p><strong>EMRAH BAY</strong><br>
+      Aydınlı Mah. Bahçeler Sk. No:45 Tuzla / İstanbul<br>
+      <strong>E-posta:</strong> <a href="mailto:emrahby@gmail.com">emrahby@gmail.com</a><br>
       <strong>Gizlilik politikası:</strong> <a href="gizlilik.html">gizlilik.html</a></p>
     </div>
   </section>
@@ -215,8 +134,8 @@
 
 <footer>
   <div class="sarmal">
-    <strong>ZEKY Okul Yönetim Sistemi</strong>
-    [TİCARİ UNVAN] · Tüm hakları saklıdır.
+    <strong>ZEKY – Okul Yönetim Sistemi</strong>
+    EMRAH BAY · Hesap Silme Bilgilendirmesi
   </div>
 </footer>
 

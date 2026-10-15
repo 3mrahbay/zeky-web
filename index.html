@@ -113,8 +113,8 @@ p{margin:0}
 .dugme:hover{background:var(--orman-derin)}
 .dugme svg{width:18px;height:18px}
 .ikincil{font-weight:700;color:var(--orman)}
-.durum{display:flex;align-items:center;gap:10px;margin-top:28px;font-size:.9375rem;color:var(--soluk)}
-.durum::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--yaprak);box-shadow:0 0 0 4px rgba(58,169,53,.18);flex:none}
+.durum{display:flex;align-items:flex-start;gap:10px;margin-top:28px;font-size:.9375rem;color:var(--soluk)}
+.durum::before{content:"";margin-top:.5em;width:9px;height:9px;border-radius:50%;background:var(--yaprak);box-shadow:0 0 0 4px rgba(58,169,53,.18);flex:none}
 
 /* Telefon */
 .telefon-yer{display:flex;justify-content:center;position:relative}
@@ -158,8 +158,30 @@ p{margin:0}
 .bolum-bas h2{font-size:clamp(2rem,3.8vw,2.85rem);margin-bottom:14px}
 .bolum-bas p{color:var(--soluk);font-size:1.125rem}
 
+/* Kapalı test: indirme */
+.indir{padding-block:0 8px;position:relative;z-index:3;margin-top:-40px}
+.indir-kart{
+  background:var(--kart);border-radius:28px;box-shadow:0 26px 60px -30px rgba(8,68,42,.45), 0 0 0 1px rgba(8,68,42,.05);
+  padding:36px 40px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px 48px;align-items:start;
+}
+.indir-kart h2{font-size:clamp(1.75rem,3vw,2.3rem);margin-bottom:10px}
+.indir-kart > div > p{color:var(--soluk)}
+.indir-kart .not{margin-top:14px;font-size:.9375rem}
+.adimlar{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:adim}
+.adimlar li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start;counter-increment:adim}
+.adimlar li::before{
+  content:counter(adim);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  background:var(--cip);color:var(--baslik);font-family:var(--font-baslik);font-weight:800;font-size:1.2rem;line-height:1;
+}
+.adimlar b{display:block;font-family:var(--font-baslik);font-weight:800;font-size:1.2rem;line-height:1.25;color:var(--baslik);margin:7px 0 2px}
+.adimlar span{color:var(--soluk);display:block}
+.adimlar .dugme{margin-top:12px}
+.dugme.acik{background:var(--kart);color:var(--orman);border:2px solid var(--orman);box-shadow:none}
+.dugme.acik:hover{background:var(--zemin-2)}
+.durum a{font-weight:700}
+
 /* Ekranlar şeridi */
-.ekranlar{padding-block:88px;background:var(--zemin-2)}
+.ekranlar{padding-block:88px;background:var(--zemin-2);margin-top:-56px;padding-top:144px}
 .serit-bas{display:flex;align-items:end;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;margin-bottom:28px}
 .serit-bas .bolum-bas{margin-bottom:0}
 .ok-dugmeler{display:flex;gap:10px}
@@ -250,6 +272,7 @@ p{margin:0}
 
 /* ── Dar ekran ────────────────────────────── */
 @media (max-width: 900px){
+  .indir-kart{grid-template-columns:minmax(0,1fr)}
   .kahraman-govde{grid-template-columns:minmax(0,1fr);gap:48px;padding-block:20px 72px}
   .roller{grid-template-columns:minmax(0,1fr)}
   .koken{grid-template-columns:minmax(0,1fr);gap:28px}
@@ -262,6 +285,8 @@ p{margin:0}
   .ust nav{gap:4px 16px}
   .ust nav a{font-size:.875rem}
   .ok-dugmeler{display:none}
+  .indir{margin-top:-28px}
+  .indir-kart{padding:26px 20px;border-radius:22px}
   .dar-gizle{display:none}
   .serit{grid-auto-columns:72%}
   .gun li{grid-template-columns:minmax(0,1fr);gap:6px;padding-left:40px}
@@ -306,9 +331,10 @@ p{margin:0}
     <div class="ust">
       <a class="marka" href="./" aria-label="ZEKY ana sayfa"><img src="img/zeky-logo.webp" width="454" height="192" alt="ZEKY – Birlikte, çocuk için."></a>
       <nav aria-label="Sayfa bölümleri">
+        <a href="#indir">İndir</a>
         <a href="#ekranlar">Ekranlar</a>
         <a href="#gun">Okul günü</a>
-        <a href="#roller">Kimler için</a>
+        <a class="dar-gizle" href="#roller">Kimler için</a>
         <a class="dar-gizle" href="#guvenlik">Güvenlik</a>
         <a href="#iletisim">İletişim</a>
       </nav>
@@ -322,7 +348,7 @@ p{margin:0}
           <a class="dugme" href="mailto:info@zeky.com.tr?subject=ZEKY%20hakk%C4%B1nda%20bilgi"><svg aria-hidden="true"><use href="#i-zarf"/></svg>Okulunuz için bilgi alın</a>
           <a class="ikincil" href="#ekranlar">Ekranlara göz atın</a>
         </div>
-        <p class="durum">Android uygulaması Google Play'de yayına hazırlanıyor.</p>
+        <p class="durum"><span>Android uygulaması Google Play'de kapalı testte. Test listesindeyseniz <a href="#indir">buradan indirin</a>.</span></p>
       </div>
 
       <div class="telefon-yer">
@@ -351,6 +377,22 @@ p{margin:0}
 </header>
 
 <main>
+  <section class="indir" id="indir" aria-labelledby="indir-baslik">
+    <div class="ic">
+      <div class="indir-kart">
+        <div>
+          <h2 id="indir-baslik">Kapalı teste katılın</h2>
+          <p>ZEKY şu an Google Play'de kapalı testte. E-posta adresi test listesine eklenmiş veliler ve personel uygulamayı buradan indirebilir.</p>
+          <p class="not">Listede değilseniz Google Play "uygulama bulunamadı" der. Eklenmek için okulunuza ya da <a href="mailto:info@zeky.com.tr?subject=ZEKY%20kapal%C4%B1%20test">info@zeky.com.tr</a> adresine yazın.</p>
+        </div>
+        <ol class="adimlar">
+          <li><div><b>Doğru Google hesabını açın</b><span>Telefonunuzdaki Google Play'de, okula bildirdiğiniz Gmail adresiyle oturum açık olmalı.</span></div></li>
+          <li><div><b>Teste katılın</b><span>Açılan sayfada "Test kullanıcısı ol" düğmesine basın.</span><a class="dugme" href="https://play.google.com/apps/testing/com.zeky.app" target="_blank" rel="noopener">Teste katıl</a></div></li>
+          <li><div><b>Uygulamayı indirin</b><span>Google Play'de ZEKY'yi yükleyin. Katıldıktan sonra görünmesi birkaç dakika sürebilir.</span><a class="dugme acik" href="https://play.google.com/store/apps/details?id=com.zeky.app" target="_blank" rel="noopener">Google Play'de aç</a></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
   <section class="ekranlar" id="ekranlar" aria-labelledby="ekranlar-baslik">
     <div class="ic">
       <div class="serit-bas">

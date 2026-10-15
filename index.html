@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZEKY Okul Yönetim Sistemi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="ZEKY, anaokulları için okul yönetim uygulaması. Veli, öğretmen ve yönetim aynı uygulamada; sabah girişinden çocuk teslimine kadar okul günü tek bir akışta.">
+<link rel="canonical" href="https://zeky.com.tr/">
+<meta name="theme-color" content="#F4FAEF">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="ZEKY">
+<meta property="og:title" content="ZEKY Okul Yönetim Sistemi">
+<meta property="og:description" content="Okul, veli ve öğretmen tek uygulamada. Anaokulları için okul yönetim sistemi.">
+<meta property="og:url" content="https://zeky.com.tr/">
+<meta property="og:image" content="https://zeky.com.tr/img/paylasim.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ZEKY – Okul Yönetim Sistemi",
+  "alternateName": "ZEKY",
+  "url": "https://zeky.com.tr/",
+  "image": "https://zeky.com.tr/img/paylasim.jpg",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Android",
+  "inLanguage": "tr",
+  "description": "Anaokulları için veli, öğretmen ve yönetimi tek uygulamada buluşturan okul yönetim sistemi.",
+  "author": { "@type": "Person", "name": "Emrah Bay" }
+}
+</script>
+<style>
+/* Mağaza görselleriyle aynı dil: açık nane zemin, koyu orman yeşili kalın başlıklar, beyaz yuvarlak kartlar,
+   papatya. Akış: logo + başlık + canlı telefon → mağaza ekranları şeridi → okul günü → roller → köken → güvenlik → yeşil kapanış. */
+:root{
+  color-scheme:light;
+  --orman:#0B5A36;        /* logo yeşili: düğme, kapanış bandı */
+  --orman-derin:#073D25;
+  --baslik:#08442A;       /* mağaza görsellerindeki başlık yeşili */
+  --yaprak:#3AA935;       /* filiz yeşili: işaretler, noktalar */
+  --altin:#F5C400;        /* papatya göbeği */
+  --zemin:#FBFDF7;
+  --zemin-2:#EEF6E7;
+  --kart:#FFFFFF;
+  --metin:#1B2A21;
+  --soluk:#4E6155;
+  --cizgi:#DCE9D4;
+  --cip:#E2F1DA;
+  --cip-metin:#1F5A36;
+  --koyu-metin:#EEF6F0;
+  --filiz:#A8D5BA;
+  --golge:0 18px 40px -22px rgba(8,68,42,.35);
+  --telefon-kasa:#10241A;
+  --telefon-ekran:#F7FAF5;
+  --telefon-cizgi:#E3EBE2;
+  --telefon-soluk:#5B6F63;
+  --odak:#F5C400;
+  --font-baslik:"Baloo 2","Nunito","Varela Round",system-ui,sans-serif;
+  --font-govde:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--zemin);color:var(--metin);
+  font-family:var(--font-govde);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--orman);text-underline-offset:.18em}
+a:focus-visible,button:focus-visible{outline:3px solid var(--odak);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--font-baslik);font-weight:800;line-height:1.08;text-wrap:balance;margin:0;color:var(--baslik)}
+p{margin:0}
+.ic{
+  max-width:1160px;margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ── Kahraman ─────────────────────────────── */
+.kahraman{
+  background:
+    radial-gradient(48rem 30rem at 78% 30%, #FFFFFF 0%, rgba(255,255,255,0) 70%),
+    radial-gradient(40rem 26rem at 0% 0%, #E4F3DA 0%, rgba(228,243,218,0) 70%),
+    linear-gradient(180deg,#F4FAEF 0%, var(--zemin) 100%);
+  position:relative;overflow:hidden;
+}
+.ust{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;padding-block:18px;flex-wrap:wrap}
+.ust .marka{display:block;line-height:0}
+.ust .marka img{height:64px;width:auto}
+.ust nav{display:flex;gap:4px 22px;flex-wrap:wrap}
+.ust nav a{color:var(--baslik);text-decoration:none;font-size:.9375rem;font-weight:700;padding:4px 0;border-bottom:2px solid transparent}
+.ust nav a:hover{border-bottom-color:var(--yaprak)}
+
+.kahraman-govde{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center;padding-block:36px 88px;position:relative}
+.kahraman h1{font-size:clamp(2.5rem,5.6vw,4.25rem);letter-spacing:-.01em;margin-bottom:20px}
+.giris{font-size:1.25rem;line-height:1.55;max-width:34ch;color:var(--soluk);margin-bottom:32px}
+.dugmeler{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center}
+.dugme{
+  display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:12px 24px;border-radius:999px;
+  background:var(--orman);color:#fff;font-weight:700;text-decoration:none;font-size:1rem;
+  box-shadow:0 10px 24px -12px rgba(11,90,54,.7);
+}
+.dugme:hover{background:var(--orman-derin)}
+.dugme svg{width:18px;height:18px}
+.ikincil{font-weight:700;color:var(--orman)}
+.durum{display:flex;align-items:center;gap:10px;margin-top:28px;font-size:.9375rem;color:var(--soluk)}
+.durum::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--yaprak);box-shadow:0 0 0 4px rgba(58,169,53,.18);flex:none}
+
+/* Telefon */
+.telefon-yer{display:flex;justify-content:center;position:relative}
+.telefon{
+  position:relative;z-index:1;
+  width:min(100%,318px);background:var(--telefon-kasa);border-radius:44px;padding:12px;margin:0;
+  box-shadow:0 44px 80px -34px rgba(8,68,42,.6), inset 0 0 0 1.5px rgba(255,255,255,.08);
+}
+.ekran{background:var(--telefon-ekran);color:var(--metin);border-radius:33px;overflow:hidden;font-size:.84rem;line-height:1.4}
+.ekran-ust{display:flex;justify-content:space-between;padding:12px 22px 4px;font-weight:700;font-size:.75rem;font-variant-numeric:tabular-nums}
+.ekran-baslik{padding:10px 18px 14px;border-bottom:1px solid var(--telefon-cizgi)}
+.ekran-baslik strong{display:block;font-family:var(--font-baslik);font-weight:800;font-size:1.25rem;color:var(--baslik);line-height:1.2}
+.ekran-baslik span{color:var(--telefon-soluk);font-size:.8rem}
+.akis{list-style:none;margin:0;padding:12px 12px 16px;display:grid;gap:8px}
+.akis li{
+  display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;
+  background:#fff;border:1px solid var(--telefon-cizgi);border-radius:14px;padding:10px 12px;
+}
+.akis time{font-weight:700;font-variant-numeric:tabular-nums;color:var(--orman);font-size:.78rem;padding-top:1px}
+.akis b{display:block;font-weight:700;font-size:.84rem}
+.akis span{color:var(--telefon-soluk);font-size:.78rem}
+.akis li.son{border-color:var(--orman);box-shadow:0 0 0 1px var(--orman)}
+.papatya{position:absolute;pointer-events:none}
+.papatya.p1{width:120px;height:120px;right:calc(50% - 215px);bottom:-36px;z-index:2}
+.papatya.p2{width:64px;height:64px;left:calc(50% - 205px);top:-14px;z-index:0}
+@media (prefers-reduced-motion: no-preference){
+  .akis li{animation:bildirim .5s cubic-bezier(.2,.8,.2,1) backwards}
+  .akis li:nth-child(1){animation-delay:.25s}
+  .akis li:nth-child(2){animation-delay:.55s}
+  .akis li:nth-child(3){animation-delay:.85s}
+  .akis li:nth-child(4){animation-delay:1.15s}
+  .akis li:nth-child(5){animation-delay:1.45s}
+  .akis li:nth-child(6){animation-delay:1.75s}
+  @keyframes bildirim{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+}
+
+/* ── Bölümler ─────────────────────────────── */
+.bolum{padding-block:88px}
+.bolum.sis{background:var(--zemin-2)}
+.bolum-bas{max-width:44rem;margin-bottom:44px}
+.bolum-bas h2{font-size:clamp(2rem,3.8vw,2.85rem);margin-bottom:14px}
+.bolum-bas p{color:var(--soluk);font-size:1.125rem}
+
+/* Ekranlar şeridi */
+.ekranlar{padding-block:88px;background:var(--zemin-2)}
+.serit-bas{display:flex;align-items:end;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;margin-bottom:28px}
+.serit-bas .bolum-bas{margin-bottom:0}
+.ok-dugmeler{display:flex;gap:10px}
+.ok{
+  width:48px;height:48px;border-radius:50%;border:1.5px solid var(--cizgi);background:var(--kart);color:var(--orman);
+  display:grid;place-items:center;cursor:pointer;box-shadow:var(--golge);
+}
+.ok:hover{border-color:var(--orman)}
+.ok:disabled{opacity:.4;cursor:default;box-shadow:none}
+.ok svg{width:20px;height:20px}
+.serit{
+  list-style:none;margin:0;
+  padding-block:8px 28px;
+  --kenar:max(16px, env(safe-area-inset-left, 0px), calc((100% - 1160px) / 2 + 16px));
+  padding-inline:var(--kenar);
+  display:grid;grid-auto-flow:column;grid-auto-columns:clamp(220px,26vw,290px);gap:22px;
+  overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin;
+  scroll-padding-inline:var(--kenar);
+}
+.serit-not-yer{margin-top:4px}
+.serit li{scroll-snap-align:start;min-width:0}
+.serit img{
+  width:100%;aspect-ratio:941/1672;object-fit:cover;border-radius:22px;background:var(--zemin-2);
+  box-shadow:0 22px 44px -26px rgba(8,68,42,.55), 0 0 0 1px rgba(8,68,42,.06);
+}
+.serit-not{color:var(--soluk);font-size:.9375rem}
+
+/* Okul günü */
+.gun{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:52rem}
+.gun li{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:28px;position:relative;padding-bottom:40px}
+.gun li::before{content:"";position:absolute;left:calc(9rem + 13px);top:14px;bottom:0;width:2px;background:var(--cizgi)}
+.gun li:last-child::before{display:none}
+.gun li:last-child{padding-bottom:0}
+.gun time{font-family:var(--font-baslik);font-weight:800;font-size:1.75rem;color:var(--baslik);font-variant-numeric:tabular-nums;text-align:right;line-height:1.1;padding-top:2px}
+.gun time.yazi{font-size:1.2rem;padding-top:6px}
+.gun .adim{padding-left:40px;position:relative;min-width:0}
+.gun .adim::before{content:"";position:absolute;left:5px;top:8px;width:18px;height:18px;border-radius:50%;background:var(--zemin);border:4px solid var(--yaprak)}
+.gun h3{font-size:1.4rem;margin-bottom:6px}
+.gun p{color:var(--soluk);max-width:60ch}
+.kim{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.kim span{background:var(--cip);color:var(--cip-metin);border-radius:999px;padding:2px 12px;font-size:.8125rem;font-weight:700}
+
+/* Roller */
+.roller{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.rol{background:var(--kart);border-radius:26px;padding:30px 28px;min-width:0;box-shadow:var(--golge)}
+.rol h3{font-size:1.65rem;margin-bottom:6px}
+.rol > p{color:var(--soluk);margin-bottom:20px}
+.rol ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rol li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start}
+.rol li svg{width:18px;height:18px;color:var(--yaprak);margin-top:4px}
+.ek-not{margin-top:36px;color:var(--soluk);max-width:62ch}
+
+/* Okulda doğdu */
+.koken{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:center}
+.maskot-yer{display:flex;justify-content:center}
+.maskot-yer img{width:min(100%,300px);filter:drop-shadow(0 24px 40px rgba(10,94,62,.25))}
+.koken h2{font-size:clamp(2rem,3.8vw,2.85rem);margin-bottom:16px}
+.koken p{color:var(--soluk);margin-bottom:16px;max-width:58ch}
+.moduller{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.moduller span{background:var(--kart);border:1.5px solid var(--cizgi);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9375rem;color:var(--baslik)}
+
+/* Güvenlik */
+.olcular{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 48px;max-width:62rem}
+.olcular li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start}
+.olcular .rozet{width:48px;height:48px;border-radius:16px;background:var(--kart);display:grid;place-items:center;box-shadow:var(--golge)}
+.olcular svg{width:24px;height:24px;color:var(--orman)}
+.olcular b{display:block;font-family:var(--font-baslik);font-weight:800;font-size:1.2rem;line-height:1.25;color:var(--baslik);margin-bottom:4px}
+.olcular span{color:var(--soluk)}
+.belgeler{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:44px;font-weight:700}
+
+/* Kapanış */
+.kapanis{background:var(--orman);color:var(--koyu-metin)}
+.kapanis .ic{padding-block:80px 40px}
+.kapanis h2{font-size:clamp(2.2rem,4.4vw,3.2rem);color:var(--altin);margin-bottom:16px;max-width:20ch}
+.kapanis p{max-width:52ch;font-size:1.125rem;margin-bottom:14px}
+.eposta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:28px}
+.eposta code{font-family:var(--font-govde);font-size:1.25rem;font-weight:700;color:var(--koyu-metin);user-select:all}
+.kapanis .dugme{background:var(--altin);color:var(--orman-derin);box-shadow:none}
+.kapanis .dugme:hover{background:#FFD23A}
+.kopyala{
+  font:inherit;font-size:.9375rem;font-weight:700;cursor:pointer;min-height:48px;padding:8px 20px;border-radius:999px;
+  background:transparent;color:var(--koyu-metin);border:1.5px solid rgba(238,246,240,.45);
+}
+.kopyala:hover{border-color:var(--koyu-metin)}
+.alt{margin-top:72px;padding-top:24px;border-top:1px solid rgba(168,213,186,.25);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;font-size:.9375rem;color:var(--filiz)}
+.alt nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.alt a{color:var(--koyu-metin)}
+
+/* ── Dar ekran ────────────────────────────── */
+@media (max-width: 900px){
+  .kahraman-govde{grid-template-columns:minmax(0,1fr);gap:48px;padding-block:20px 72px}
+  .roller{grid-template-columns:minmax(0,1fr)}
+  .koken{grid-template-columns:minmax(0,1fr);gap:28px}
+  .maskot-yer img{width:min(60%,220px)}
+  .olcular{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width: 560px){
+  .bolum{padding-block:64px}
+  .ust .marka img{height:50px}
+  .ust nav{gap:4px 16px}
+  .ust nav a{font-size:.875rem}
+  .ok-dugmeler{display:none}
+  .dar-gizle{display:none}
+  .serit{grid-auto-columns:72%}
+  .gun li{grid-template-columns:minmax(0,1fr);gap:6px;padding-left:40px}
+  .gun li::before{left:13px;top:14px}
+  .gun time{text-align:left;font-size:1.4rem}
+  .gun time.yazi{font-size:1.15rem;padding-top:0}
+  .gun .adim{padding-left:0;position:static}
+  .gun .adim::before{left:5px;top:6px}
+  .giris{font-size:1.125rem}
+  .rol{padding:26px 22px}
+  .papatya.p1{width:92px;height:92px;right:calc(50% - 180px);bottom:-28px}
+  .papatya.p2{left:calc(50% - 178px)}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-kilit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-goz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="m2 2 20 20"/></symbol>
+  <symbol id="i-resim" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+  <symbol id="i-mesaj" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-sil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+  <symbol id="i-dunya" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="i-zarf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-sag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-papatya" viewBox="0 0 100 100">
+    <g fill="#FFFFFF" stroke="#DCE9D4" stroke-width="1.2">
+      <ellipse cx="50" cy="22" rx="10" ry="20"/><ellipse cx="50" cy="78" rx="10" ry="20"/>
+      <ellipse cx="22" cy="50" rx="20" ry="10"/><ellipse cx="78" cy="50" rx="20" ry="10"/>
+      <ellipse cx="30" cy="30" rx="10" ry="20" transform="rotate(-45 30 30)"/><ellipse cx="70" cy="70" rx="10" ry="20" transform="rotate(-45 70 70)"/>
+      <ellipse cx="70" cy="30" rx="10" ry="20" transform="rotate(45 70 30)"/><ellipse cx="30" cy="70" rx="10" ry="20" transform="rotate(45 30 70)"/>
+    </g>
+    <circle cx="50" cy="50" r="14" fill="#F5C400"/><circle cx="46" cy="46" r="5" fill="#FFE27A"/>
+  </symbol>
+</svg>
+
+<header class="kahraman">
+  <div class="ic">
+    <div class="ust">
+      <a class="marka" href="./" aria-label="ZEKY ana sayfa"><img src="img/zeky-logo.webp" width="454" height="192" alt="ZEKY – Birlikte, çocuk için."></a>
+      <nav aria-label="Sayfa bölümleri">
+        <a href="#ekranlar">Ekranlar</a>
+        <a href="#gun">Okul günü</a>
+        <a href="#roller">Kimler için</a>
+        <a class="dar-gizle" href="#guvenlik">Güvenlik</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+    </div>
+
+    <div class="kahraman-govde">
+      <div>
+        <h1>Okul, veli ve öğretmen tek uygulamada.</h1>
+        <p class="giris">ZEKY, anaokulları için okul yönetim uygulaması. Sabah girişinden çocuk teslimine kadar okul günü tek bir akışta.</p>
+        <div class="dugmeler">
+          <a class="dugme" href="mailto:info@zeky.com.tr?subject=ZEKY%20hakk%C4%B1nda%20bilgi"><svg aria-hidden="true"><use href="#i-zarf"/></svg>Okulunuz için bilgi alın</a>
+          <a class="ikincil" href="#ekranlar">Ekranlara göz atın</a>
+        </div>
+        <p class="durum">Android uygulaması Google Play'de yayına hazırlanıyor.</p>
+      </div>
+
+      <div class="telefon-yer">
+        <svg class="papatya p2" aria-hidden="true"><use href="#i-papatya"/></svg>
+        <figure class="telefon" aria-label="Velinin telefonunda bir okul günü, örnek veriyle">
+          <div class="ekran">
+            <div class="ekran-ust" aria-hidden="true"><span>16:47</span><span>ZEKY</span></div>
+            <div class="ekran-baslik">
+              <strong>Bugün</strong>
+              <span>Elif, Papatya sınıfı (örnek veri)</span>
+            </div>
+            <ol class="akis">
+              <li><time>08:41</time><div><b>Sabah girişi onaylandı</b><span>Elif sınıfına geçti.</span></div></li>
+              <li><time>09:15</time><div><b>Yoklama alındı</b><span>Bugün okulda.</span></div></li>
+              <li><time>11:20</time><div><b>Galeride yeni fotoğraf</b><span>Bahçe çalışmasından 3 fotoğraf.</span></div></li>
+              <li><time>13:05</time><div><b>Öğle uykusu</b><span>1 saat 10 dakika uyudu.</span></div></li>
+              <li><time>15:30</time><div><b>Yeni kazanım</b><span>Pratik yaşam: su dökme çalışması.</span></div></li>
+              <li class="son"><time>16:47</time><div><b>Elif hazır</b><span>Çıkış için kapıya yönlendirildi.</span></div></li>
+            </ol>
+          </div>
+        </figure>
+        <svg class="papatya p1" aria-hidden="true"><use href="#i-papatya"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="ekranlar" id="ekranlar" aria-labelledby="ekranlar-baslik">
+    <div class="ic">
+      <div class="serit-bas">
+        <div class="bolum-bas">
+          <h2 id="ekranlar-baslik">Uygulamadan ekranlar</h2>
+          <p>Yoklamadan galeriye, ZEKY'nin her gün kullanılan ekranları.</p>
+        </div>
+        <div class="ok-dugmeler">
+          <button class="ok" type="button" data-yon="-1" aria-label="Önceki ekranlar" aria-controls="serit"><svg aria-hidden="true"><use href="#i-sol"/></svg></button>
+          <button class="ok" type="button" data-yon="1" aria-label="Sonraki ekranlar" aria-controls="serit"><svg aria-hidden="true"><use href="#i-sag"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <ul class="serit" id="serit" tabindex="0" aria-label="Uygulama ekranları">
+      <li><img src="img/ekran/surecler-470.webp" srcset="img/ekran/surecler-470.webp 470w, img/ekran/surecler-940.webp 940w" sizes="(max-width: 560px) 72vw, 290px" width="470" height="835" loading="lazy" alt="Tüm süreçler tek ekranda: öğretmen ana sayfasında yoklama, öğrenciler, mesajlar, sınıf günlüğü ve gözlem kısayolları."></li>
+      <li><img src="img/ekran/yoklama-470.webp" srcset="img/ekran/yoklama-470.webp 470w, img/ekran/yoklama-940.webp 940w" sizes="(max-width: 560px) 72vw, 290px" width="470" height="835" loading="lazy" alt="Yoklama kontrolü: geldi, geç, gelmedi ve bekliyor durumları tek dokunuşla işaretlenir."></li>
+      <li><img src="img/ekran/gelisim-470.webp" srcset="img/ekran/gelisim-470.webp 470w, img/ekran/gelisim-940.webp 940w" sizes="(max-width: 560px) 72vw, 290px" width="470" height="835" loading="lazy" alt="Gelişim takibi: Montessori, orman okulu, değerler ve İngilizce kazanımları çocuk bazında izlenir."></li>
+      <li><img src="img/ekran/galeri-470.webp" srcset="img/ekran/galeri-470.webp 470w, img/ekran/galeri-940.webp 940w" sizes="(max-width: 560px) 72vw, 290px" width="470" height="835" loading="lazy" alt="Günlük akış ve galeri: günlük rapor, kazanımlar ve okuldan fotoğraflar bir arada."></li>
+      <li><img src="img/ekran/iletisim-470.webp" srcset="img/ekran/iletisim-470.webp 470w, img/ekran/iletisim-940.webp 940w" sizes="(max-width: 560px) 72vw, 290px" width="470" height="835" loading="lazy" alt="Güvenli iletişim: veli ve okul arasında mesajlar, okul zili bildirimleri ve duyurular."></li>
+      <li><img src="img/ekran/giris-470.webp" srcset="img/ekran/giris-470.webp 470w, img/ekran/giris-940.webp 940w" sizes="(max-width: 560px) 72vw, 290px" width="470" height="835" loading="lazy" alt="Güvenli giriş: Google hesabıyla, rol bazlı erişimle yalnız yetkili veli ve personel girer."></li>
+    </ul>
+    <div class="ic serit-not-yer">
+      <p class="serit-not">Ekranlardaki isimler ve fotoğraflar örnektir.</p>
+    </div>
+  </section>
+
+  <section class="bolum" id="gun" aria-labelledby="gun-baslik">
+    <div class="ic">
+      <div class="bolum-bas">
+        <h2 id="gun-baslik">Bir okul günü, ZEKY'de</h2>
+        <p>ZEKY'nin ekranları bir anaokulunun gerçek gününden çıktı. Sabahtan akşama kim ne yapar, kime haber gider:</p>
+      </div>
+      <ol class="gun">
+        <li>
+          <time>08:40</time>
+          <div class="adim">
+            <h3>Okula bırakma</h3>
+            <p>Veli çocuğu bıraktığını uygulamadan bildirir, danışma girişi onaylar. Onay velinin telefonuna bildirim olarak düşer.</p>
+            <p class="kim"><span>Veli</span><span>Danışma</span></p>
+          </div>
+        </li>
+        <li>
+          <time>09:15</time>
+          <div class="adim">
+            <h3>Yoklama</h3>
+            <p>Öğretmen yoklamayı onaylar. Gelmeyen çocuğun velisine haber gider; veli bildirime dokunup doğrudan izin bildirebilir.</p>
+            <p class="kim"><span>Öğretmen</span><span>Veli</span></p>
+          </div>
+        </li>
+        <li>
+          <time class="yazi">Gün içi</time>
+          <div class="adim">
+            <h3>Gözlem, fotoğraf, kazanım</h3>
+            <p>Öğretmen gözlem yazar, kazanımları işaretler, fotoğraf ekler. Fotoğraflar yönetici onayından geçer; karede fotoğraf izni olmayan bir çocuk varsa yayınlanmaz.</p>
+            <p class="kim"><span>Öğretmen</span><span>Yönetim</span><span>Veli</span></p>
+          </div>
+        </li>
+        <li>
+          <time class="yazi">Öğleden sonra</time>
+          <div class="adim">
+            <h3>Randevu ve görüşme</h3>
+            <p>Veli öğretmen, rehberlik ya da yönetimle randevu alır. Görüşmeden sonra not yazılır; gizli notları yalnız yönetim ve rehberlik görür.</p>
+            <p class="kim"><span>Veli</span><span>Öğretmen</span><span>Rehberlik</span></p>
+          </div>
+        </li>
+        <li>
+          <time>16:45</time>
+          <div class="adim">
+            <h3>Çocuk teslimi</h3>
+            <p>Veli yola çıktığını ve kapıda olduğunu bildirir; sınıf öğretmenine haber gider. Çocuk hazırlanıp kapıya yönlendirilir, teslim edildiğinde veliye bildirim gelir. Çocuğu kimin alabileceğini veli önceden tanımlar.</p>
+            <p class="kim"><span>Veli</span><span>Öğretmen</span><span>Danışma</span></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bolum sis" id="roller" aria-labelledby="roller-baslik">
+    <div class="ic">
+      <div class="bolum-bas">
+        <h2 id="roller-baslik">Herkes kendi ekranında</h2>
+        <p>Aynı uygulama; veli, öğretmen ve yönetim yalnız kendi işine ait ekranları görür.</p>
+      </div>
+      <div class="roller">
+        <div class="rol">
+          <h3>Veli</h3>
+          <p>Çocuğunun gününü, gelişimini ve okulla yazışmalarını tek yerden izler.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Günlük akış, duyurular ve bildirimler</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Öğretmenle uygulama içi mesajlaşma</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Fotoğraf ve video galerisi</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>İzin bildirimi ve randevu</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Çocuk teslimi ve yetkili kişiler</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Eğitim ve kazanım takibi, aylık özet</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Ödeme planı ve ödeme bildirimi</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Yemek menüsü, uyku, etkinlikler</li>
+          </ul>
+        </div>
+        <div class="rol">
+          <h3>Öğretmen</h3>
+          <p>Sınıfın gününü telefondan yürütür; kâğıt formlar ve dağınık mesajlar yerine tek akış.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Yoklama ve devamsızlık bildirimi</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Hızlı gözlem ve kazanım işaretleme</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Fotoğraf ve video yükleme, onaylı yayın</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Günlük, dönemsel ve gelişim raporları</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Veli mesajları ve görüşme notları</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Çıkış listesi ve kapıdan gelen mesajlar</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>QR ile işe giriş ve izin talebi</li>
+          </ul>
+        </div>
+        <div class="rol">
+          <h3>Yönetim</h3>
+          <p>Okulun idari ve mali işlerini, onay bekleyen her şeyle birlikte görür.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Onay merkezi: izin, ödeme, fotoğraf ve diğer talepler bir arada</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Personel: konum doğrulamalı QR giriş-çıkış, izin, puantaj, bordro</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Finans: ödeme planları, tahsilat, gider ve fatura</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Duyuru, anket ve veli memnuniyeti raporu</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>MEB denetimine hazırlık listesi</li>
+            <li><svg aria-hidden="true"><use href="#i-tik"/></svg>Danışma: giriş-çıkış ve ziyaretçi randevuları</li>
+          </ul>
+        </div>
+      </div>
+      <p class="ek-not">Rehberlik (PDR) birimi için ayrı bir alan vardır: gözlem, test ve ilerleme kayıtları burada tutulur ve öğretmen ekranlarında görünmez.</p>
+    </div>
+  </section>
+
+  <section class="bolum" id="koken" aria-labelledby="koken-baslik">
+    <div class="ic koken">
+      <div class="maskot-yer">
+        <img src="img/maskot-720.webp" srcset="img/maskot-360.webp 360w, img/maskot-720.webp 720w" sizes="(max-width: 900px) 220px, 300px" width="720" height="1015" alt="ZEKY'nin maskotu: yeşil çiçek başlı, el sallayan bir karakter">
+      </div>
+      <div>
+        <h2 id="koken-baslik">Bir okulun içinde yazıldı</h2>
+        <p>ZEKY, İstanbul Tuzla'daki Bir Çiçek Koleji Anaokulu'nda, okulun kendi ihtiyaçları için geliştirildi ve her gün orada kullanılıyor. Montessori ve orman okulu programı uygulayan bir okulun iş akışları, sabah girişinden çocuk teslimine kadar uygulamanın temelini oluşturuyor.</p>
+        <p>Müfredat okula göre şekillenir. Her modül ayrı ayrı açılıp kapatılabilir:</p>
+        <div class="moduller">
+          <span>Montessori kazanımları</span>
+          <span>Orman becerileri</span>
+          <span>Değerler eğitimi</span>
+          <span>İngilizce</span>
+          <span>Branş dersleri</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bolum sis" id="guvenlik" aria-labelledby="guvenlik-baslik">
+    <div class="ic">
+      <div class="bolum-bas">
+        <h2 id="guvenlik-baslik">Çocuğa ait bilgi, yalnız görmesi gerekende</h2>
+        <p>ZEKY'de okul çocuklarla ilgili veri tutar; bu yüzden erişim kuralları uygulamanın ilk tasarım kararıdır.</p>
+      </div>
+      <ul class="olcular">
+        <li><span class="rozet"><svg aria-hidden="true"><use href="#i-kilit"/></svg></span><div><b>Rol bazlı erişim</b><span>Her kullanıcı yalnız kendi rolünün ekranlarını görür; veli yalnız kendi çocuğunun kayıtlarını görür.</span></div></li>
+        <li><span class="rozet"><svg aria-hidden="true"><use href="#i-goz"/></svg></span><div><b>Rehberlik kayıtları ayrı</b><span>PDR gözlem ve test kayıtları öğretmenlere kapalıdır.</span></div></li>
+        <li><span class="rozet"><svg aria-hidden="true"><use href="#i-resim"/></svg></span><div><b>İzinli fotoğraf paylaşımı</b><span>Fotoğraflar yönetici onayından geçer; fotoğraf izni olmayan çocuk yayınlanmaz.</span></div></li>
+        <li><span class="rozet"><svg aria-hidden="true"><use href="#i-mesaj"/></svg></span><div><b>İletişim uygulama içinde</b><span>Velilere personelin telefon ve e-posta adresi gösterilmez; yazışma uygulama içi mesajla yapılır.</span></div></li>
+        <li><span class="rozet"><svg aria-hidden="true"><use href="#i-sil"/></svg></span><div><b>Hesap silme uygulamanın içinde</b><span>Kullanıcı hesabının ve ilişkili verilerin silinmesini uygulamadan talep edebilir.</span></div></li>
+        <li><span class="rozet"><svg aria-hidden="true"><use href="#i-dunya"/></svg></span><div><b>Reklam ve veri satışı yok</b><span>ZEKY reklam ağı içermez. Altyapı Google Firebase üzerinde çalışır; yurt dışına aktarım için açık rıza alınır.</span></div></li>
+      </ul>
+      <div class="belgeler">
+        <a href="gizlilik.html">Gizlilik politikası ve KVKK aydınlatma metni</a>
+        <a href="hesap-silme.html">Hesap ve veri silme</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="kapanis" id="iletisim">
+  <div class="ic">
+    <h2>Okulunuzda ZEKY</h2>
+    <p>ZEKY bugün Bir Çiçek Koleji Anaokulu'nda kullanılıyor. 2027'nin başından itibaren diğer anaokullarına açılacak.</p>
+    <p>Haber almak ya da okulunuzun ihtiyaçlarını konuşmak için yazın:</p>
+    <div class="eposta">
+      <code id="eposta-adresi">info@zeky.com.tr</code>
+      <a class="dugme" href="mailto:info@zeky.com.tr?subject=ZEKY%20hakk%C4%B1nda%20bilgi"><svg aria-hidden="true"><use href="#i-zarf"/></svg>E-posta yazın</a>
+      <button class="kopyala" type="button" id="kopyala">Adresi kopyala</button>
+    </div>
+    <div class="alt">
+      <span>© 2026 ZEKY – Okul Yönetim Sistemi. Geliştiren: Emrah Bay, Tuzla / İstanbul.</span>
+      <nav aria-label="Yasal">
+        <a href="gizlilik.html">Gizlilik ve KVKK</a>
+        <a href="hesap-silme.html">Hesap silme</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var dugme = document.getElementById('kopyala');
+  var adres = document.getElementById('eposta-adresi');
+  if (dugme && adres) {
+    dugme.addEventListener('click', function(){
+      var metin = adres.textContent.trim();
+      function secili(){
+        var r = document.createRange(); r.selectNodeContents(adres);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        dugme.textContent = 'Adres seçildi';
+      }
+      try {
+        navigator.clipboard.writeText(metin).then(function(){ dugme.textContent = 'Adres kopyalandı'; }, secili);
+      } catch (e) { secili(); }
+      setTimeout(function(){ dugme.textContent = 'Adresi kopyala'; }, 2500);
+    });
+  }
+
+  var serit = document.getElementById('serit');
+  var oklar = document.querySelectorAll('.ok');
+  if (!serit || !oklar.length) return;
+  function durumGuncelle(){
+    var son = serit.scrollWidth - serit.clientWidth - 4;
+    oklar[0].disabled = serit.scrollLeft <= 4;
+    oklar[1].disabled = serit.scrollLeft >= son;
+  }
+  oklar.forEach(function(ok){
+    ok.addEventListener('click', function(){
+      var kart = serit.querySelector('li');
+      var adim = kart ? kart.getBoundingClientRect().width + 22 : 300;
+      serit.scrollBy({ left: adim * Number(ok.dataset.yon), behavior: 'smooth' });
+    });
+  });
+  serit.addEventListener('scroll', durumGuncelle, { passive: true });
+  window.addEventListener('resize', durumGuncelle);
+  durumGuncelle();
+})();
+</script>
+</body>
+</html>
